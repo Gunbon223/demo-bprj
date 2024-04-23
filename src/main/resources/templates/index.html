@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+</head>
+<body>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    </style>
+
+<table style="border: black 1px solid ">
+    <thead  >
+    <tr >
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Job</th>
+        <th>City</th>
+        <th>Gender</th>
+        <th>Birthday</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr th:each="person : ${pageData.getContent()}">
+        <td th:text="${person.getId()}"></td>
+        <td th:text="${person.getFullname()}"></td>
+        <td th:text="${person.getJob()}"></td>
+        <td th:text="${person.getCity()}"></td>
+        <td th:text="${person.getGender()}"></td>
+        <td th:text="${person.getBirthday()}"></td>
+        <td th:text="${person.getSalary()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<ul>
+    <li>
+        <button><a th:href="@{/person (page =${pageData.getCurrentPage() -1 })}">Previous</a></button>
+    </li>
+    <li th:each="pageNum : ${#numbers.sequence(1,pageData.getTotalPages())}">
+        <button><a th:href="@{/person (page =${pageNum})}" th:text="${pageNum}"></a></button>
+    </li>
+    <li>
+        <button><a th:href="@{/person (page =${pageData.getCurrentPage() +1})}" >Next</a></button>
+    </li>
+</ul>
+```
+
+
+
+</body>
+</html>

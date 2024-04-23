@@ -4,12 +4,11 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @ToString
-public class Children
-{
+@Builder
+public class Childern {
     private String name;
-    private int age;
+    private Integer age;
 }
