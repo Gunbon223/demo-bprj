@@ -40,18 +40,39 @@
 </table>
 
 
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 5px 5px;
+        text-decoration: none;
+    }
+</style>
+
 <ul>
     <li>
-        <button><a th:href="@{/person (page =${pageData.getCurrentPage() -1 })}">Previous</a></button>
+        <button th:disabled="${pageData.getCurrentPage() == 1}"><a th:href="@{/person (page =${pageData.getCurrentPage() -1 })}">Previous</a></button>
     </li>
     <li th:each="pageNum : ${#numbers.sequence(1,pageData.getTotalPages())}">
         <button><a th:href="@{/person (page =${pageNum})}" th:text="${pageNum}"></a></button>
     </li>
     <li>
-        <button><a th:href="@{/person (page =${pageData.getCurrentPage() +1})}" >Next</a></button>
+        <button th:disabled="${pageData.getCurrentPage() == pageData.getTotalPages()}"><a th:href="@{/person (page =${pageData.getCurrentPage() +1})}" >Next</a></button>
     </li>
 </ul>
-```
+
 
 
 
